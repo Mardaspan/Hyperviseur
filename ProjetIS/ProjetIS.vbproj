@@ -96,16 +96,13 @@
     <Compile Include="Authentification.vb">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="MainSQL.vb" />
-=======
     <Compile Include="Mine_info.Designer.vb">
       <DependentUpon>Mine_info.vb</DependentUpon>
     </Compile>
     <Compile Include="Mine_info.vb">
       <SubType>Form</SubType>
     </Compile>
->>>>>>> origin/master
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
