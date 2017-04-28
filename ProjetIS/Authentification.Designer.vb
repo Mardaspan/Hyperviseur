@@ -22,12 +22,16 @@ Partial Class Authentification
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.InscriptionLabel = New System.Windows.Forms.LinkLabel()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -82,11 +86,26 @@ Partial Class Authentification
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'InscriptionLabel
+        '
+        Me.InscriptionLabel.AutoSize = True
+        Me.InscriptionLabel.Location = New System.Drawing.Point(204, 84)
+        Me.InscriptionLabel.Name = "InscriptionLabel"
+        Me.InscriptionLabel.Size = New System.Drawing.Size(64, 13)
+        Me.InscriptionLabel.TabIndex = 6
+        Me.InscriptionLabel.TabStop = True
+        Me.InscriptionLabel.Text = "Inscription ?"
+        '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
+        '
         'Authentification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(419, 146)
+        Me.Controls.Add(Me.InscriptionLabel)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox2)
@@ -95,6 +114,7 @@ Partial Class Authentification
         Me.Controls.Add(Me.Label1)
         Me.Name = "Authentification"
         Me.Text = "Authentification"
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -106,4 +126,6 @@ Partial Class Authentification
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents InscriptionLabel As LinkLabel
+    Friend WithEvents ErrorProvider1 As ErrorProvider
 End Class

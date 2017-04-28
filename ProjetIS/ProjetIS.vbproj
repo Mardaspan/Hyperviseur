@@ -5,12 +5,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2AED5BD8-D04C-4BDD-9A81-06483C0ACAB2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>ProjetIS.Authentification</StartupObject>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>ProjetIS.My.MyApplication</StartupObject>
     <RootNamespace>ProjetIS</RootNamespace>
     <AssemblyName>ProjetIS</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -83,6 +83,12 @@
     <Compile Include="Dialog1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Inscription.Designer.vb">
+      <DependentUpon>Inscription.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inscription.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,7 @@
     <Compile Include="Authentification.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Main.vb" />
     <Compile Include="MainSQL.vb" />
     <Compile Include="Mine_info.Designer.vb">
       <DependentUpon>Mine_info.vb</DependentUpon>
@@ -122,6 +129,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Dialog1.resx">
       <DependentUpon>Dialog1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inscription.resx">
+      <DependentUpon>Inscription.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
