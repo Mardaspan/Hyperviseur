@@ -67,6 +67,7 @@ Partial Class Authentification
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(179, 20)
         Me.TextBox2.TabIndex = 3
+        Me.TextBox2.UseSystemPasswordChar = True
         '
         'Button1
         '
@@ -112,7 +113,10 @@ Partial Class Authentification
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.MaximizeBox = False
         Me.Name = "Authentification"
+        Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Authentification"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

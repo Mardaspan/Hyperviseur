@@ -136,12 +136,12 @@ Module MainSql
             End Try
         End Using
 
-
+        Return Nothing
     End Function
 
     Public Function SqlQuery(ByVal sql As String)
         Dim cmdMySql As MySqlCommand
-        Dim reader As MySqlDataReader
+        Dim reader As MySqlDataReader = Nothing
         Using bddcnTest As New MySqlConnection(Cnxstrartemis)
             Try
                 bddcnTest.Open()

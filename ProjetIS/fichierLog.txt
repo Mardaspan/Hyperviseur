@@ -1,0 +1,9 @@
+﻿2017_04_28 12:13:35 info robot:SH01 rad=0000 hum=0000 temp=0000
+2017_04_28 12:17:55 info robot:CL01 rad=0000 hum=0000 temp=0000
+2017_04_28 12:18:35 warn robot:SH01 rad=0000 hum=0000 temp=0000
+2017_04_28 12:19:58 info robot:SH02 rad=0000 hum=0000 temp=0000
+2017_04_28 12:25:02 info robot:SH03 rad=0000 hum=0000 temp=0000
+2017_04_28 12:25:03 warn robot:MA01 rad=0000 hum=0000 temp=0000
+2017_04_28 12:30:31 warn robot:MA01 rad=0000 hum=0000 temp=0000
+2017_04_28 12:45:00 info robot:SH01 rad=0000 hum=0000 temp=0000
+2017_04_28 12:47:35 info robot:MA02 rad=0000 hum=0000 temp=0000

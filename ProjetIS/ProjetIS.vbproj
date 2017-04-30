@@ -77,23 +77,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialog1.Designer.vb">
-      <DependentUpon>Dialog1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Dialog1.vb">
-      <SubType>Form</SubType>
+    <Compile Include="..\..\Artemis.zip\Artemis\Simple3Des.vb">
+      <Link>Simple3Des.vb</Link>
     </Compile>
     <Compile Include="Inscription.Designer.vb">
       <DependentUpon>Inscription.vb</DependentUpon>
     </Compile>
     <Compile Include="Inscription.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Authentification.Designer.vb">
@@ -102,7 +92,19 @@
     <Compile Include="Authentification.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LogForm.Designer.vb">
+      <DependentUpon>LogForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LogForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main.vb" />
+    <Compile Include="MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainSQL.vb" />
     <Compile Include="Mine_info.Designer.vb">
       <DependentUpon>Mine_info.vb</DependentUpon>
@@ -127,17 +129,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dialog1.resx">
-      <DependentUpon>Dialog1.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Inscription.resx">
       <DependentUpon>Inscription.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Authentification.resx">
       <DependentUpon>Authentification.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogForm.resx">
+      <DependentUpon>LogForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mine_info.resx">
       <DependentUpon>Mine_info.vb</DependentUpon>
@@ -160,6 +162,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="fichierLog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -1,9 +1,7 @@
 ﻿Public Class MainForm
-    Dim test = 0
-    Dim tableau As New ArrayList
 
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Connexion()
         If (userInformation.id = Nothing) Then
             Me.Close()
@@ -14,5 +12,8 @@
         Me.MaximumSize = New Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height)
     End Sub
 
-
+    Private Sub LogButton_Click(sender As Object, e As EventArgs) Handles LogButton.Click
+        Dim FormLog As New LogForm
+        FormLog.Show()
+    End Sub
 End Class
