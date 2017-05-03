@@ -12,8 +12,14 @@
         Me.MaximumSize = New Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height)
     End Sub
 
-    Private Sub LogButton_Click(sender As Object, e As EventArgs) Handles LogButton.Click
+    Private Sub LogButton_Click(sender As Object, e As EventArgs) Handles Log_btn.Click
         Dim FormLog As New LogForm
         FormLog.Show()
     End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+
 End Class

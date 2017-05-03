@@ -1,0 +1,9 @@
+﻿2017_04_28;12:13:35;info;user:U01;L'utilisateur U01 s'est connecté au robot CL01
+2017_04_28;12:17:55;info;robot:CL01;Connexion de l'utilisateur U01 OK
+2017_04_28;12:18:35;warn;robot:SH01;Perte de connexion de l'utilisateur U02
+2017_04_28;12:19:58;info;robot:SH02;OK
+2017_04_28;12:25:02;info;robot:SH03;Batterie à 50%
+2017_04_28;12:25:03;warn;robot:MA01;Connexion de l'utilisateur U03
+2017_04_28;12:46:31;alert;robot:MA01;Niveau de batterie faible
+2017_04_28;12:47:00;info;robot:HA01;Moule plein
+2017_04_28;12:49:35;info;robot:MA02;Mise à jour du logiciel réussie

@@ -39,7 +39,7 @@ Module Main
         Dim _assembly As Assembly
         Dim _textStreamReader As StreamReader
         _assembly = Assembly.GetExecutingAssembly()
-        _textStreamReader = New StreamReader(_assembly.GetManifestResourceStream("ProjetIS.fichierLog.txt"))
+        _textStreamReader = New StreamReader(_assembly.GetManifestResourceStream("ProjetIS.fichierLogRapport.txt"))
         Dim arrayToReturn As New ArrayList
         While Not _textStreamReader.EndOfStream
             Try
