@@ -172,5 +172,8 @@
   <ItemGroup>
     <EmbeddedResource Include="fichierLogRapport.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="fichierLogCapteurs.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

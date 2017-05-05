@@ -2,11 +2,11 @@
 Imports System.Reflection
 Imports System.Security.Cryptography
 Imports System.Text
-Imports Microsoft.VisualBasic.FileIO
-
 Module Main
 
-    Public Const FichierLog As String = ""
+    Public Const FichierLogRapport As String = "ProjetIS.fichierLogRapport.txt"
+    Public Const FichierLogCapteurs As String = "ProjetIS.fichierLogCapteurs.txt"
+
 
     Public Function GetHash(theInput As String) As String
 
@@ -35,11 +35,11 @@ Module Main
         frmConnexion.Dispose()
     End Sub
 
-    Public Function ReadFile()
+    Public Function ReadFile(file As String)
         Dim _assembly As Assembly
         Dim _textStreamReader As StreamReader
         _assembly = Assembly.GetExecutingAssembly()
-        _textStreamReader = New StreamReader(_assembly.GetManifestResourceStream("ProjetIS.fichierLogRapport.txt"))
+        _textStreamReader = New StreamReader(_assembly.GetManifestResourceStream(file))
         Dim arrayToReturn As New ArrayList
         While Not _textStreamReader.EndOfStream
             Try

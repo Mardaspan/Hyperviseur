@@ -17,7 +17,7 @@
 
 
     Private Sub LogForm_OnLoad(sender As Object, e As EventArgs) Handles Me.Load
-        Dim dataFromFile As ArrayList = ReadFile()
+        Dim dataFromFile As ArrayList = ReadFile(FichierLogRapport)
         Dim tabDataFromRow As String()
         If (dataFromFile.Count > 0) Then
             For Each line As String In dataFromFile
