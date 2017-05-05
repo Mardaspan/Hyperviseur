@@ -77,9 +77,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Artemis.zip\Artemis\Simple3Des.vb">
-      <Link>Simple3Des.vb</Link>
-    </Compile>
     <Compile Include="Inscription.Designer.vb">
       <DependentUpon>Inscription.vb</DependentUpon>
     </Compile>

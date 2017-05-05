@@ -55,15 +55,4 @@ Module Main
 
     End Function
 
-    Public Sub WriteFile(ByVal password As String)
-        Dim wrapper As New Simple3Des("Ronsard")
-        Dim cipher As String = wrapper.EncryptData(password)
-
-        Dim objStreamWriter As StreamWriter
-        'Pass the file path and the file name to the StreamReader constructor.
-        objStreamWriter = New StreamWriter(FichierLog, True, Encoding.Unicode)
-        ' objStreamWriter.WriteLine(UserId & ";" & cipher)
-        objStreamWriter.Close()
-
-    End Sub
 End Module
