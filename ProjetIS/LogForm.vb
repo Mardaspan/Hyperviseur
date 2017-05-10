@@ -4,30 +4,60 @@
     Private Const Info As String = "info"
     Private Const Alert As String = "alert"
 
-    Private Sub MajDG()
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            If (row.Cells(2).Value = Warn) Then
-                row.DefaultCellStyle.BackColor = Color.Yellow
-            ElseIf (row.Cells(2).Value = Alert) Then
-                row.DefaultCellStyle.BackColor = Color.Red
+    Delegate Sub DMajDg()
+
+    Public Sub MajDG()
+        Dim nbInfo As Integer = 0
+        Dim nbWarning As Integer = 0
+        Dim nbAlert As Integer = 0
+
+        DataGridView1.Rows.Clear()
+        DataGridView1.ClearSelection()
+        DataGridView1.CurrentCell = Nothing
+        Dim dataFromFile As ArrayList = ReadFile(FichierLogRapport)
+        Dim tabDataFromRow As String()
+        If (dataFromFile IsNot Nothing) Then
+            If (dataFromFile.Count > 0) Then
+                For Each line As String In dataFromFile
+                    tabDataFromRow = line.Split(";")
+                    DataGridView1.Rows.Add(tabDataFromRow)
+                Next
             End If
-        Next
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                If (row.Cells(2).Value = Warn) Then
+                    row.DefaultCellStyle.BackColor = Color.Yellow
+                    nbWarning += 1
+                    Warning_value.Text = nbWarning
+                ElseIf (row.Cells(2).Value = Alert) Then
+                    row.DefaultCellStyle.BackColor = Color.Red
+                    nbAlert += 1
+                    Alert_value.Text = nbAlert
+                Else
+                    nbInfo += 1
+                    Information_Value.Text = nbInfo
+                End If
+            Next
+        End If
+        Me.DataGridView1.FirstDisplayedScrollingRowIndex = Me.DataGridView1.RowCount - 1
+
+        'Select the last row.
+        'Me.DataGridView1.Rows(Me.DataGridView1.RowCount - 1).Selected = True
+
     End Sub
+
 
 
 
     Private Sub LogForm_OnLoad(sender As Object, e As EventArgs) Handles Me.Load
-        Dim dataFromFile As ArrayList = ReadFile(FichierLogRapport)
-        Dim tabDataFromRow As String()
-        If (dataFromFile.Count > 0) Then
-            For Each line As String In dataFromFile
-                tabDataFromRow = line.Split(";")
 
-                DataGridView1.Rows.Add(tabDataFromRow)
-            Next
-        End If
-
-        Call MajDG()
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If MainForm.pauseThread = False Then
+            MainForm.pauseThread = True
+        Else
+            MainForm.pauseThread = False
+        End If
+
+    End Sub
 End Class

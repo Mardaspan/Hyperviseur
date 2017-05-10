@@ -34,15 +34,15 @@ Module MainSql
             Try
                 Dim userId As New UserId
                 bddcn.Open()
-                Dim sqlQuery = "select * from user WHERE username=@Username and password=@UserPw"
-                Dim Cmd As New MySqlCommand(sqlQuery, bddcn)
+                Const sqlQuery As String = "select * from user WHERE username=@Username and password=@UserPw"
+                Dim cmd As New MySqlCommand(sqlQuery, bddcn)
 
-                Cmd.CommandText = sqlQuery
-                Cmd.CommandType = CommandType.Text
+                cmd.CommandText = sqlQuery
+                cmd.CommandType = CommandType.Text
 
-                Cmd.Parameters.AddWithValue("@Username", login)
-                Cmd.Parameters.AddWithValue("@UserPw", password)
-                Dim reader As MySqlDataReader = Cmd.ExecuteReader()
+                cmd.Parameters.AddWithValue("@Username", login)
+                cmd.Parameters.AddWithValue("@UserPw", password)
+                Dim reader As MySqlDataReader = cmd.ExecuteReader()
                 reader.Read()
                 If reader.HasRows Then
                     userId.id = reader.GetValue(0)

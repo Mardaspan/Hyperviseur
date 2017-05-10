@@ -1,11 +1,12 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Reflection
 Imports System.Security.Cryptography
 Imports System.Text
 Module Main
 
-    Public Const FichierLogRapport As String = "ProjetIS.fichierLogRapport.txt"
-    Public Const FichierLogCapteurs As String = "ProjetIS.fichierLogCapteurs.txt"
+    Public FichierLogRapport As String = My.Application.Info.DirectoryPath & "\fichierLogRapport.txt"
+    Public FichierLogCapteurs As String = My.Application.Info.DirectoryPath & "\fichierLogCapteurs.txt"
 
 
     Public Function GetHash(theInput As String) As String
@@ -36,23 +37,93 @@ Module Main
     End Sub
 
     Public Function ReadFile(file As String)
-        Dim _assembly As Assembly
-        Dim _textStreamReader As StreamReader
-        _assembly = Assembly.GetExecutingAssembly()
-        _textStreamReader = New StreamReader(_assembly.GetManifestResourceStream(file))
-        Dim arrayToReturn As New ArrayList
-        While Not _textStreamReader.EndOfStream
-            Try
-                arrayToReturn.Add(_textStreamReader.ReadLine())
-            Catch ex As Exception
-                MsgBox("Ligne " & ex.Message &
-                       "Invalide")
-            End Try
 
-        End While
 
-        Return arrayToReturn
+        If (IO.File.Exists(file)) Then
+                Dim _textStreamReader As StreamReader
+                _textStreamReader = New StreamReader(file)
+                Dim arrayToReturn As New ArrayList
+                While Not _textStreamReader.EndOfStream
+                    Try
+                        arrayToReturn.Add(_textStreamReader.ReadLine())
+                    Catch ex As Exception
+                        MsgBox("Ligne " & ex.Message &
+                               "Invalide")
+                    End Try
+
+            End While
+            _textStreamReader.Close()
+            Return arrayToReturn
+            Else
+                Throw New Exception("Fichier non trouvé")
+            End If
+
+
+
 
     End Function
 
+    Public Sub WriteFile(fileName As String, stringToWrite As String)
+
+        Dim _textStreamWriter As StreamWriter
+        _textStreamWriter = New StreamWriter(fileName, True)
+        _textStreamWriter.WriteLine(stringToWrite)
+        _textStreamWriter.Close()
+
+    End Sub
+
+    Public Function GenerateRandomLog() As String
+        Dim randomIndex As New Random(DateTime.Now.Millisecond)
+
+        Dim robotName() As String = {"SH01", "SH02", "SH03", "SH04", "MA01", "MA02", "MA03", "MA04", "CL01", "CL02", "CL03", "CL04"}
+        Dim userName() As String = {"U01", "U02", "U03", "U04", "U05", "U06", "U07", "U08", "U09", "U10", "U11"}
+        Dim level() As String = {"warn", "info", "alert"}
+        Dim type() As String = {"user", "robot"}
+        Dim commentaryInfo() As String = {"OK", "Moule plein", "Mise à jour du logiciel réussie", "Batterie chargée"}
+        Dim commentaryWarnUser() As String = {"L'utilisateur {0} s'est connecté", "L'utilisateur {0} s'est déconnecté"}
+        Dim commentaryWarnRobot() As String = {"Perte de connexion", "Température moteurs élevée"}
+        Dim commentaryAlert() As String = {"Niveau de batterie faible", "Dysfonctionnement inconnue"}
+        Dim currentDate = DateTime.Now.ToString("yyyy_MM_dd")
+        Dim currentTime = DateTime.Now.ToString("HH:mm:ss")
+        Dim stringToReturn As New StringBuilder
+
+        stringToReturn.Append(currentDate & ";")
+        stringToReturn.Append(currentTime & ";")
+
+        Select Case level(randomIndex.Next(3))
+            Case "warn"
+
+                stringToReturn.Append("warn;")
+                If (type(randomIndex.Next(2)) = "user") Then
+
+                    stringToReturn.Append("user:")
+                    Dim currentUserName = userName(randomIndex.Next(11))
+                    stringToReturn.Append(currentUserName & ";")
+                    stringToReturn.Append(String.Format(commentaryWarnUser(randomIndex.Next(2)), currentUserName))
+                Else
+
+                    stringToReturn.Append("robot:")
+                    stringToReturn.Append(robotName(randomIndex.Next(12)) & ";")
+                    stringToReturn.Append(commentaryWarnRobot(randomIndex.Next(1)))
+                End If
+            Case "info"
+
+                stringToReturn.Append("info;")
+                stringToReturn.Append("robot:")
+                stringToReturn.Append(robotName(randomIndex.Next(12)) & ";")
+                stringToReturn.Append(commentaryInfo(randomIndex.Next(4)))
+            Case "alert"
+
+                stringToReturn.Append("alert;")
+                stringToReturn.Append("robot:")
+                stringToReturn.Append(robotName(randomIndex.Next(11)) & ";")
+                stringToReturn.Append(commentaryAlert(randomIndex.Next(2)))
+
+        End Select
+
+
+        Return stringToReturn.ToString()
+
+
+    End Function
 End Module
