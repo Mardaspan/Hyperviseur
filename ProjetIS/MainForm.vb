@@ -83,8 +83,8 @@ Public Class MainForm
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'Environnement de la mine / Liste robot
         If (Not Application.OpenForms.OfType(Of MineInfo).Any()) Then
-            MInfo = New MineInfo()
-            MInfo.Show()
+            mInfo = New MineInfo()
+            mInfo.Show()
         End If
     End Sub
 

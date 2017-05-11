@@ -219,6 +219,7 @@ Partial Class LogForm
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DataGridView1)
+        Me.DoubleBuffered = True
         Me.Name = "LogForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "LogForm"
