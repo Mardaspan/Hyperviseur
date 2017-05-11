@@ -89,6 +89,12 @@
     <Compile Include="Authentification.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ListeRobotForm.Designer.vb">
+      <DependentUpon>ListeRobotForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListeRobotForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LogForm.Designer.vb">
       <DependentUpon>LogForm.vb</DependentUpon>
     </Compile>
@@ -138,6 +144,9 @@
     <EmbeddedResource Include="Authentification.resx">
       <DependentUpon>Authentification.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListeRobotForm.resx">
+      <DependentUpon>ListeRobotForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogForm.resx">
       <DependentUpon>LogForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -148,7 +157,7 @@
       <DependentUpon>MineInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
@@ -170,7 +179,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="fichierLogRapport.txt" />
+    <Resource Include="fichierLogRapport.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="fichierLogCapteurs.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
