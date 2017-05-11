@@ -5,6 +5,7 @@ Public Class MainForm
     Public backGroundthread As Thread
     Dim randomTime As New Random(DateTime.Now.Millisecond)
     Dim FormLog As LogForm
+    Dim mInfo As MineInfo
     Dim listRobotForm As ListeRobotForm
 
     Public stopThread As Boolean = False
@@ -80,7 +81,11 @@ Public Class MainForm
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Liste robot
+        'Environnement de la mine / Liste robot
+        If (Not Application.OpenForms.OfType(Of MineInfo).Any()) Then
+            MInfo = New MineInfo()
+            MInfo.Show()
+        End If
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
