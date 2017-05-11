@@ -13,7 +13,7 @@ Module MainSql
     End Sub
 
 
-    Public Sub ExecuteQueryMySql(ByVal sql As String)
+    Public Function ExecuteQueryMySql(ByVal sql As String) As Boolean
         Dim cmdMySql As MySqlCommand
         Using bddcn As New MySqlConnection(Cnxstrartemis)
             Try
@@ -21,13 +21,15 @@ Module MainSql
                 cmdMySql = New MySqlCommand(sql, bddcn)
                 cmdMySql.ExecuteNonQuery()
                 cmdMySql.Dispose()
+                Return True
             Catch ex As Exception
                 MsgBox(ex.Message & " SQL = " & sql)
+                Return False
             Finally
             End Try
         End Using
 
-    End Sub
+    End Function
 
     Public Function QueryForLogin(ByVal login As String, ByVal password As String)
         Using bddcn As New MySqlConnection(Cnxstrartemis)
@@ -92,6 +94,44 @@ Module MainSql
             End Try
         End Using
 
+    End Function
+
+    Public Function QueryForRapport(sqlString As String) As ArrayList
+        Dim cmdMySql As MySqlCommand
+        Dim reader As MySqlDataReader = Nothing
+        Dim rapport As Rapport = Nothing
+        Dim arrayToReturn = New ArrayList
+        Using bddcnTest As New MySqlConnection(Cnxstrartemis)
+            Try
+                bddcnTest.Open()
+                cmdMySql = New MySqlCommand(sqlString, bddcnTest)
+                reader = cmdMySql.ExecuteReader
+                While reader.Read()
+                    rapport = New Rapport()
+                    rapport.idRapport = reader.GetValue(0)
+                    rapport.idUser = reader.GetValue(1)
+                    rapport.date_debut = reader.GetValue(2)
+                    rapport.date_fin = reader.GetValue(3)
+                    rapport.texteRapport = reader.GetValue(4)
+                    arrayToReturn.Add(rapport)
+
+                End While
+
+                Return arrayToReturn
+
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return Nothing
+            Finally
+
+                If reader IsNot Nothing Then
+                    reader.Close()
+                End If
+
+
+
+            End Try
+        End Using
     End Function
 
     Public Function WeekOfYear(ByVal dateTraitee As Date) As Integer

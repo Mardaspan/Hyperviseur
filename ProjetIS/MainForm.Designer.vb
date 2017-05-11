@@ -124,7 +124,7 @@ Partial Class MainForm
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(273, 55)
         Me.Button4.TabIndex = 9
-        Me.Button4.Text = "Rapport..."
+        Me.Button4.Text = "Voir rapports..."
         Me.Button4.UseVisualStyleBackColor = True
         '
         'MainForm

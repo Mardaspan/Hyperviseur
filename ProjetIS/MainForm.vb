@@ -32,6 +32,12 @@ Public Class MainForm
         If (Not Application.OpenForms.OfType(Of LogForm).Any()) Then
             FormLog = New LogForm()
             FormLog.Show()
+        Else
+            Dim log As LogForm
+            For Each logForm As LogForm In Application.OpenForms.OfType(Of LogForm)
+                log = logForm
+            Next
+            log.Show()
         End If
 
     End Sub
@@ -54,7 +60,7 @@ Public Class MainForm
             If (stopThread) Then
                 Exit Sub
             End If
-            Thread.Sleep(randomTime.Next(0, 10000))
+            Thread.Sleep(randomTime.Next(0, 5000))
         End While
 
     End Sub
@@ -79,7 +85,7 @@ Public Class MainForm
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         'Rapport
-        Dim rapport As New RapportGeneralForm
+        Dim rapport As New ListeRapportForm
         rapport.Show()
     End Sub
 End Class

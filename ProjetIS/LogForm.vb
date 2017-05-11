@@ -49,14 +49,30 @@
 
 
     Private Sub LogForm_OnLoad(sender As Object, e As EventArgs) Handles Me.Load
+        If MainForm.pauseThread = True Then
+            Button1.Text = "Reprendre"
+        Else
+            Button1.Text = "Pause"
+        End If
+    End Sub
+
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) _
+        Handles Me.FormClosing
+
+        If e.CloseReason = CloseReason.UserClosing Then
+            e.Cancel = True
+            Me.Hide()
+        End If
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If MainForm.pauseThread = False Then
             MainForm.pauseThread = True
+            Button1.Text = "Reprendre"
         Else
             MainForm.pauseThread = False
+            Button1.Text = "Pause"
         End If
 
     End Sub

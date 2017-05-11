@@ -28,6 +28,14 @@ Module Main
         Dim username As String
     End Structure
 
+    Public Structure Rapport
+        Dim idRapport As Integer
+        Dim idUser As Integer
+        Dim date_debut As String
+        Dim date_fin As String
+        Dim texteRapport As String
+    End Structure
+
     Public userInformation As New UserId
 
     Public Sub Connexion()
@@ -75,7 +83,7 @@ Module Main
     Public Function GenerateRandomLog() As String
         Dim randomIndex As New Random(DateTime.Now.Millisecond)
 
-        Dim robotName() As String = {"SH01", "SH02", "SH03", "SH04", "MA01", "MA02", "MA03", "MA04", "CL01", "CL02", "CL03", "CL04"}
+        Dim robotName() As String = {"SH01", "SH02", "SH03", "MA01", "MA02", "CL01", "CL02", "CL03", "HA01", "HA02"}
         Dim userName() As String = {"U01", "U02", "U03", "U04", "U05", "U06", "U07", "U08", "U09", "U10", "U11"}
         Dim level() As String = {"warn", "info", "alert"}
         Dim type() As String = {"user", "robot"}
@@ -103,20 +111,20 @@ Module Main
                 Else
 
                     stringToReturn.Append("robot:")
-                    stringToReturn.Append(robotName(randomIndex.Next(12)) & ";")
+                    stringToReturn.Append(robotName(randomIndex.Next(10)) & ";")
                     stringToReturn.Append(commentaryWarnRobot(randomIndex.Next(1)))
                 End If
             Case "info"
 
                 stringToReturn.Append("info;")
                 stringToReturn.Append("robot:")
-                stringToReturn.Append(robotName(randomIndex.Next(12)) & ";")
+                stringToReturn.Append(robotName(randomIndex.Next(10)) & ";")
                 stringToReturn.Append(commentaryInfo(randomIndex.Next(4)))
             Case "alert"
 
                 stringToReturn.Append("alert;")
                 stringToReturn.Append("robot:")
-                stringToReturn.Append(robotName(randomIndex.Next(11)) & ";")
+                stringToReturn.Append(robotName(randomIndex.Next(10)) & ";")
                 stringToReturn.Append(commentaryAlert(randomIndex.Next(2)))
 
         End Select
