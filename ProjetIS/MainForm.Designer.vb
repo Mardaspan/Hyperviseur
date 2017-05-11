@@ -23,6 +23,7 @@ Partial Class MainForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Log_btn = New System.Windows.Forms.Button()
+        Me.Btn_env = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Log_btn
@@ -31,14 +32,24 @@ Partial Class MainForm
         Me.Log_btn.Name = "Log_btn"
         Me.Log_btn.Size = New System.Drawing.Size(75, 23)
         Me.Log_btn.TabIndex = 0
-        Me.Log_btn.Text = "Button1"
+        Me.Log_btn.Text = "Rapports"
         Me.Log_btn.UseVisualStyleBackColor = True
+        '
+        'Btn_env
+        '
+        Me.Btn_env.Location = New System.Drawing.Point(378, 120)
+        Me.Btn_env.Name = "Btn_env"
+        Me.Btn_env.Size = New System.Drawing.Size(88, 23)
+        Me.Btn_env.TabIndex = 3
+        Me.Btn_env.Text = "Environnement"
+        Me.Btn_env.UseVisualStyleBackColor = True
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1908, 681)
+        Me.ClientSize = New System.Drawing.Size(1362, 681)
+        Me.Controls.Add(Me.Btn_env)
         Me.Controls.Add(Me.Log_btn)
         Me.Name = "MainForm"
         Me.Text = "MainForm"
@@ -47,4 +58,5 @@ Partial Class MainForm
     End Sub
 
     Friend WithEvents Log_btn As Button
+    Friend WithEvents Btn_env As Button
 End Class

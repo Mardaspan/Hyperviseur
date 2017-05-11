@@ -103,10 +103,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainSQL.vb" />
-    <Compile Include="Mine_info.Designer.vb">
-      <DependentUpon>Mine_info.vb</DependentUpon>
+    <Compile Include="MineInfo.Designer.vb">
+      <DependentUpon>MineInfo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Mine_info.vb">
+    <Compile Include="MineInfo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -144,8 +144,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mine_info.resx">
-      <DependentUpon>Mine_info.vb</DependentUpon>
+    <EmbeddedResource Include="MineInfo.resx">
+      <DependentUpon>MineInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

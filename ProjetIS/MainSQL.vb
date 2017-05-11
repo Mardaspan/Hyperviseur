@@ -4,7 +4,7 @@ Imports MySql.Data.MySqlClient
 Module MainSql
 
     Public CnMySql As MySqlConnection
-    Private Const Cnxstrartemis As String = "SERVER=localhost;UID=root;DATABASE=exdema;PASSWORD=aaaa"
+    Private Const Cnxstrartemis As String = "SERVER=localhost;UID=root;DATABASE=exdema;PASSWORD=500EATHnote"
     ' Private Const Cnxstrartemis As String = "SERVER=srv-dwh.ronsard.loc;UID=DataRonsard;DATABASE=ARTEMIS;PASSWORD=01jfrsmm1jp"
     'Private Const CNXSTRARTEMIS As String = "SERVER=localhost;DATABASE=ARTEMIS;UID=XLA;PASSWORD=LAGUES2506"
 

@@ -17,6 +17,11 @@
         FormLog.Show()
     End Sub
 
+    Private Sub ButtonEnv_Click(sender As Object, e As EventArgs) Handles Btn_env.Click
+        Dim MineInfo As New MineInfo
+        MineInfo.Show()
+    End Sub
+
     Private Sub Label1_Click(sender As Object, e As EventArgs)
 
     End Sub
