@@ -2,26 +2,35 @@
 
 Public Class MineInfo
     Public backgroundThread As Thread
-    Delegate Sub DShowDatas(ByVal robot As String, ByVal temperature As String, ByVal radiation As String, ByVal hygrometry As String, ByVal battery As Integer)
+
+    Delegate Sub DShowDatas()
+
     Dim randomTime As New Random(DateTime.Now.Millisecond)
     Dim allLabel As New ArrayList
     Dim threadStopped As Boolean = False
 
     Private Sub Mine_info_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        backgroundThread = New Thread(AddressOf GetDatasFromLogs)
+        call GetAllLabel()
+        backgroundThread = New Thread(AddressOf GetDataFromThread)
         backgroundThread.Start()
-        Call GetAllLabelOnForm()
+
+        backgroundThread = new Thread(AddressOf Average)
+        backgroundThread.Start()
     End Sub
 
-    Private Sub GetAllLabelOnForm()
-        For Each control As Control In Me.Controls.OfType(Of Label)
-            If Not control.Name.StartsWith("label") Then
+    Private sub GetAllLabel()
+        For Each control As Label In Me.Controls.OfType (Of Label)
+            If _
+                control.Name.StartsWith("CL") or control.Name.StartsWith("MA") or control.Name.StartsWith("SH") or
+                control.Name.StartsWith("HA") Then
                 allLabel.Add(control)
             End If
         Next
-    End Sub
+    End sub
 
-    Private Sub GetDatasFromLogs()
+    Private Sub GetDataFromThread()
+
+
         Dim datas As ArrayList = ReadFile(FichierLogCapteurs)
         Dim tabDatas As String()
         Dim radiation As String
@@ -32,58 +41,140 @@ Public Class MineInfo
         Dim time_log As String
         Dim robot As String
 
-        While (True)
-            If (datas IsNot Nothing) Then
-                If (datas.Count > 0) Then
-                    For Each line As String In datas
-                        tabDatas = line.Split(";")
-                        date_log = tabDatas(0)
-                        time_log = tabDatas(1)
-                        robot = tabDatas(2)
-                        radiation = tabDatas(3)
-                        hygrometry = tabDatas(4)
-                        temperature = tabDatas(5)
-                        battery = Integer.Parse(tabDatas(6))
-                        If Me.IsHandleCreated Then
 
-                            Me.Invoke(New MineInfo.DShowDatas(AddressOf Me.ShowDatas), robot, temperature, radiation, hygrometry, battery)
-
+        If (datas.Count > 0) Then
+            For Each line As String In datas
+                tabDatas = line.Split(";")
+                date_log = tabDatas(0)
+                time_log = tabDatas(1)
+                robot = tabDatas(2)
+                radiation = tabDatas(3)
+                hygrometry = tabDatas(4)
+                temperature = tabDatas(5)
+                battery = Integer.Parse(tabDatas(6))
+                Dim stringSplitted As String()
+                For Each label As Label In allLabel
+                    stringSplitted = label.Name.Split("_")
+                    If (stringSplitted(0) = robot) Then
+                        If (Me.IsHandleCreated)
+                            Select Case stringSplitted(1)
+                                Case "temp"
+                                    label.Invoke(Sub() label.Text = temperature + " °C")
+                                    If temperature > 60
+                                        label.Invoke(Sub() label.ForeColor = Color.Red)
+                                    elseif temperature < 10
+                                        label.Invoke(Sub() label.ForeColor = Color.Blue)
+                                     Else 
+                                         label.Invoke(Sub() label.ForeColor = Color.Black)
+                                        
+                                    End If
+                                Case "rad"
+                                    label.Invoke(Sub() label.Text = radiation + " MBq/g")
+                                Case "hyg"
+                                    label.Invoke(Sub() label.Text = hygrometry + " %")
+                                Case "bat"
+                                    label.Invoke(Sub() label.Text = Convert.ToString(battery) + " %")
+                            End Select
                         End If
-                    Next
 
+                    End If
+                Next
+                if (threadStopped)
+                    Exit Sub
                 End If
-            End If
+                Thread.Sleep(randomTime.Next(0, 5000))
+            Next
 
-
-
-
-            If (threadStopped) Then
-                Exit Sub
-            End If
-            Thread.Sleep(randomTime.Next(0, 3000))
-        End While
+        End If
     End Sub
 
-    Public Sub ShowDatas(ByVal robot As String, ByVal temperature As String, ByVal radiation As String, ByVal hygrometry As String, ByVal battery As Integer)
-        Dim stringSplitted As String()
-        For Each label As Label In allLabel
-            stringSplitted = label.Name.Split("_")
-            If (stringSplitted(0) = robot) Then
-                Select Case stringSplitted(1)
-                    Case "temp"
-                        label.Text = temperature + " °C"
-                    Case "rad"
-                        label.Text = radiation + " MBq/g"
-                    Case "hyg"
-                        label.Text = hygrometry + " %"
-                    Case "bat"
-                        label.Text = Convert.ToString(battery) + " %"
-                End Select
+    Private sub Average()
+        dim allLabelMoyenne as New ArrayList
+        dim sommeTemp = 0
+        dim sommeRad = 0
+        Dim sommeHyg = 0
+
+        For Each control As Label In Me.Controls.OfType (Of Label)
+            If control.Name.StartsWith("moyenne") Then
+                allLabelMoyenne.Add(control)
             End If
         Next
 
+        While (true)
+            sommeTemp = 0
+            sommeHyg = 0
+            sommeRad = 0
+            If Me.IsHandleCreated
+                For Each label As Label In allLabel
+                    select Case label.Name.Split("_")(1)
+                        Case "temp"
+                            sommeTemp = sommeTemp + NumFromLabel(label.Text)
+                        Case "rad"
+                            sommeRad = sommeRad + NumFromLabel(label.Text)
+                        Case "hyg"
+                            sommeHyg = sommeHyg + NumFromLabel(label.Text)
+                    End Select
+                Next
 
 
+                For Each label As Label In allLabelMoyenne
+                    Select Case label.Name.Split("_")(1)
+                        Case "temp"
+                            label.Invoke(Sub() label.Text = "Temperature moyenne :" & sommeTemp/10 & " °C")
+                        case "rad"
+                            label.Invoke(Sub() label.Text = "Radiation moyenne :" & sommeRad/10 & " MBq/g")
+                        case "hyg"
+                            label.Invoke(Sub() label.Text = "Hygrométrie moyenne :" & sommeHyg/10 & " %")
+                    End Select
+                Next
+            End If
+            if (threadStopped)
+                Exit Sub
+            End If
+            Thread.Sleep(5000)
+        End While
+    End sub
+
+    Private Sub GetDatasFromLogs()
+        'Dim datas As ArrayList = ReadFile(FichierLogCapteurs)
+        'Dim tabDatas As String()
+        'Dim radiation As String
+        'Dim hygrometry As String
+        'Dim temperature As String
+        'Dim battery As Integer
+        'Dim date_log As String
+        'Dim time_log As String
+        'Dim robot As String
+
+        'While (True)
+        '    If (datas IsNot Nothing) Then
+        '        If (datas.Count > 0) Then
+        '            For Each line As String In datas
+        '                tabDatas = line.Split(";")
+        '                date_log = tabDatas(0)
+        '                time_log = tabDatas(1)
+        '                robot = tabDatas(2)
+        '                radiation = tabDatas(3)
+        '                hygrometry = tabDatas(4)
+        '                temperature = tabDatas(5)
+        '                battery = Integer.Parse(tabDatas(6))
+        '                If Me.IsHandleCreated Then
+        '                    Me.Invoke(New MineInfo.DShowDatas(AddressOf Me.ShowDatas), robot, temperature, radiation, hygrometry, battery)
+        '                End If
+        '            Next
+
+        '        End If
+        '    End If
+
+
+        '    If (threadStopped) Then
+        '        Exit Sub
+        '    End If
+        '   ' Thread.Sleep(randomTime.Next(0, 3000))
+        'End While
+    End Sub
+
+    Public Sub ShowDatas()
 
 
         'Me.sh01_temp.Text = Convert.ToString(temperature) + " °C"
@@ -119,6 +210,9 @@ Public Class MineInfo
         '    Me.label_sh01_bat.ForeColor = Color.Black
         'End If
     End Sub
+
+    Private sub updateData()
+    End sub
 
     Private Sub MineInfo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         threadStopped = True

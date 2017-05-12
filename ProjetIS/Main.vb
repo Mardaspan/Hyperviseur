@@ -3,15 +3,16 @@ Imports System.IO
 Imports System.Reflection
 Imports System.Security.Cryptography
 Imports System.Text
-Module Main
+Imports System.Text.RegularExpressions
 
+Module Main
     Public FichierLogRapport As String = My.Application.Info.DirectoryPath & "\fichierLogRapport.txt"
     Public FichierLogCapteurs As String = My.Application.Info.DirectoryPath & "\fichierLogCapteurs.txt"
 
 
     Public Function GetHash(theInput As String) As String
 
-        Using hasher As MD5 = MD5.Create()    ' create hash object
+        Using hasher As MD5 = MD5.Create() ' create hash object
 
             ' Convert to byte array and get hash
             Dim dbytes As Byte() =
@@ -20,7 +21,6 @@ Module Main
             Return Convert.ToBase64String(dbytes)
 
         End Using
-
     End Function
 
     Public Structure UserId
@@ -48,27 +48,23 @@ Module Main
 
 
         If (IO.File.Exists(file)) Then
-                Dim _textStreamReader As StreamReader
-                _textStreamReader = New StreamReader(file)
-                Dim arrayToReturn As New ArrayList
-                While Not _textStreamReader.EndOfStream
-                    Try
-                        arrayToReturn.Add(_textStreamReader.ReadLine())
-                    Catch ex As Exception
-                        MsgBox("Ligne " & ex.Message &
-                               "Invalide")
-                    End Try
+            Dim _textStreamReader As StreamReader
+            _textStreamReader = New StreamReader(file)
+            Dim arrayToReturn As New ArrayList
+            While Not _textStreamReader.EndOfStream
+                Try
+                    arrayToReturn.Add(_textStreamReader.ReadLine())
+                Catch ex As Exception
+                    MsgBox("Ligne " & ex.Message &
+                           "Invalide")
+                End Try
 
             End While
             _textStreamReader.Close()
             Return arrayToReturn
-            Else
-                Throw New Exception("Fichier non trouvé")
-            End If
-
-
-
-
+        Else
+            Throw New Exception("Fichier non trouvé")
+        End If
     End Function
 
     Public Sub WriteFile(fileName As String, stringToWrite As String)
@@ -77,10 +73,9 @@ Module Main
         _textStreamWriter = New StreamWriter(fileName, True)
         _textStreamWriter.WriteLine(stringToWrite)
         _textStreamWriter.Close()
-
     End Sub
 
-    Public Function GenerateRandomLog() As String
+    Public Function GenerateRandomLogRapport() As String
         Dim randomIndex As New Random(DateTime.Now.Millisecond)
 
         Dim robotName() As String = {"SH01", "SH02", "SH03", "MA01", "MA02", "CL01", "CL02", "CL03", "HA01", "HA02"}
@@ -131,7 +126,36 @@ Module Main
 
 
         Return stringToReturn.ToString()
+    End Function
+
+    Public Function GenerateRandomLogCapteurs() As String
+        Dim randomIndex As New Random(DateTime.Now.Millisecond)
+
+        Dim robotName() As String = {"SH01", "SH02", "SH03", "MA01", "MA02", "CL01", "CL02", "CL03", "HA01", "HA02"}
+        Dim currentDate = DateTime.Now.ToString("yyyy_MM_dd")
+        Dim currentTime = DateTime.Now.ToString("HH:mm:ss")
+        Dim stringToReturn As New StringBuilder
+
+        stringToReturn.Append(currentDate & ";")
+        stringToReturn.Append(currentTime & ";")
+        stringToReturn.Append(robotName(randomIndex.Next(10)) & ";")
+        stringToReturn.Append(randomIndex.Next(300,360) & ";")
+        stringToReturn.Append(randomIndex.Next(5,52) & ";")
+        stringToReturn.Append(randomIndex.Next(0,91) & ";")
+        stringToReturn.Append(randomIndex.Next(0,100))
+
+        
 
 
+        Return stringToReturn.ToString()
+    End Function
+
+    Public Function NumFromLabel(ByVal value As String) As Integer
+        Dim returnVal As String = String.Empty
+        Dim collection As MatchCollection = Regex.Matches(value, "\d+")
+        For Each m As Match In collection
+            returnVal += m.ToString()
+        Next
+        Return Convert.ToInt32(returnVal)
     End Function
 End Module

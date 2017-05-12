@@ -31,13 +31,13 @@ Partial Class Authentification
         Me.Button2 = New System.Windows.Forms.Button()
         Me.InscriptionLabel = New System.Windows.Forms.LinkLabel()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        CType(Me.ErrorProvider1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.AutoSize = true
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Label1.Location = New System.Drawing.Point(81, 30)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(46, 13)
@@ -46,8 +46,8 @@ Partial Class Authentification
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.AutoSize = true
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Label2.Location = New System.Drawing.Point(61, 60)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(69, 13)
@@ -67,7 +67,7 @@ Partial Class Authentification
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(179, 20)
         Me.TextBox2.TabIndex = 3
-        Me.TextBox2.UseSystemPasswordChar = True
+        Me.TextBox2.UseSystemPasswordChar = true
         '
         'Button1
         '
@@ -76,7 +76,7 @@ Partial Class Authentification
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "OK"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = true
         '
         'Button2
         '
@@ -85,16 +85,16 @@ Partial Class Authentification
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 5
         Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button2.UseVisualStyleBackColor = true
         '
         'InscriptionLabel
         '
-        Me.InscriptionLabel.AutoSize = True
+        Me.InscriptionLabel.AutoSize = true
         Me.InscriptionLabel.Location = New System.Drawing.Point(204, 84)
         Me.InscriptionLabel.Name = "InscriptionLabel"
         Me.InscriptionLabel.Size = New System.Drawing.Size(64, 13)
         Me.InscriptionLabel.TabIndex = 6
-        Me.InscriptionLabel.TabStop = True
+        Me.InscriptionLabel.TabStop = true
         Me.InscriptionLabel.Text = "Inscription ?"
         '
         'ErrorProvider1
@@ -103,7 +103,7 @@ Partial Class Authentification
         '
         'Authentification
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(419, 146)
         Me.Controls.Add(Me.InscriptionLabel)
@@ -113,17 +113,17 @@ Partial Class Authentification
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = false
         Me.Name = "Authentification"
-        Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = false
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Authentification"
-        Me.TopMost = True
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.TopMost = true
+        CType(Me.ErrorProvider1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
 
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
