@@ -98,7 +98,7 @@ Public Class LogForm
 
         While (true)
 
-            If (not MainForm.pauseThread)
+            If (not MainForm.pauseThread or Not stopThread)
 
                 If Me.IsHandleCreated
                     Warning_value.Invoke(Sub() Warning_value.Text = nbWarning)
