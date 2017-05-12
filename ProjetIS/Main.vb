@@ -41,7 +41,10 @@ Module Main
     Public Sub Connexion()
         Dim frmConnexion As New Authentification
         frmConnexion.ShowDialog()
-        frmConnexion.Dispose()
+        If(userInformation.id <> Nothing)
+            Dim mainForm As New MainForm
+            mainForm.Show()
+        End If
     End Sub
 
     Public Function ReadFile(file As String)

@@ -13,12 +13,7 @@ Public Class MainForm
 
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Connexion()
-        If (userInformation.id = Nothing) Then
-            Me.Close()
-            Me.Dispose()
-            Exit Sub
-        End If
+       
 
         Label3.Text = userInformation.username
         Label5.Text = DateTime.Now.ToString("dd-MM-yyyy")
@@ -68,9 +63,8 @@ Public Class MainForm
     Private Sub writeToFileCapteurs()
 
         While(true)
-            If (pauseThread = False) Then
+            
                 WriteFile(FichierLogCapteurs, GenerateRandomLogCapteurs())
-            End If
             If (stopThread) Then
                 Exit Sub
             End If

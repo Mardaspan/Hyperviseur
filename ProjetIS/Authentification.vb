@@ -3,27 +3,27 @@ Imports System.Security.Cryptography
 Imports System.Text
 
 Public Class Authentification
-
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         userInformation = QueryForLogin(TextBox1.Text, GetHash(TextBox2.Text))
 
         If userInformation.id <> Nothing Then
+            Dim formain as New MainForm
+            formain.Show()
             Me.Close()
             Me.Dispose()
         Else
             ErrorProvider1.SetError(TextBox2, "Mot de passe ou nom d'utilisateur inconnu")
         End If
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
         Me.Dispose()
     End Sub
 
 
-
-    Private Sub InscriptionLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles InscriptionLabel.LinkClicked
+    Private Sub InscriptionLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
+        Handles InscriptionLabel.LinkClicked
         Dim inscription As New Inscription
         inscription.ShowDialog()
         If inscription.DialogResult = DialogResult.OK Then

@@ -18,8 +18,8 @@
             DataGridView1.Item("idUser", i).Value = userInformation.username
             DataGridView1.Item("Date_debut", i).Value = line.date_debut
             DataGridView1.Item("Date_fin", i).Value = line.date_fin
-            If (line.texteRapport.Length > 41) Then
-                DataGridView1.Item("Rapport", i).Value = line.texteRapport.Substring(0, 40) & " (...)"
+            If (line.texteRapport.Length > 21) Then
+                DataGridView1.Item("Rapport", i).Value = line.texteRapport.Substring(0, 20) & " (...)"
             Else
                 DataGridView1.Item("Rapport", i).Value = line.texteRapport
             End If

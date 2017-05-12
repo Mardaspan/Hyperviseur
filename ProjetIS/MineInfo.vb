@@ -30,62 +30,64 @@ Public Class MineInfo
 
     Private Sub GetDataFromThread()
 
+While(True)
+    Dim datas As ArrayList = ReadFile(FichierLogCapteurs)
+    Dim tabDatas As String()
+    Dim radiation As String
+    Dim hygrometry As String
+    Dim temperature As String
+    Dim battery As Integer
+    Dim date_log As String
+    Dim time_log As String
+    Dim robot As String
 
-        Dim datas As ArrayList = ReadFile(FichierLogCapteurs)
-        Dim tabDatas As String()
-        Dim radiation As String
-        Dim hygrometry As String
-        Dim temperature As String
-        Dim battery As Integer
-        Dim date_log As String
-        Dim time_log As String
-        Dim robot As String
 
-
-        If (datas.Count > 0) Then
-            For Each line As String In datas
-                tabDatas = line.Split(";")
-                date_log = tabDatas(0)
-                time_log = tabDatas(1)
-                robot = tabDatas(2)
-                radiation = tabDatas(3)
-                hygrometry = tabDatas(4)
-                temperature = tabDatas(5)
-                battery = Integer.Parse(tabDatas(6))
-                Dim stringSplitted As String()
-                For Each label As Label In allLabel
-                    stringSplitted = label.Name.Split("_")
-                    If (stringSplitted(0) = robot) Then
-                        If (Me.IsHandleCreated)
-                            Select Case stringSplitted(1)
-                                Case "temp"
-                                    label.Invoke(Sub() label.Text = temperature + " °C")
-                                    If temperature > 60
-                                        label.Invoke(Sub() label.ForeColor = Color.Red)
-                                    elseif temperature < 10
-                                        label.Invoke(Sub() label.ForeColor = Color.Blue)
-                                     Else 
-                                         label.Invoke(Sub() label.ForeColor = Color.Black)
+    If (datas.Count > 0) Then
+        For Each line As String In datas
+            tabDatas = line.Split(";")
+            date_log = tabDatas(0)
+            time_log = tabDatas(1)
+            robot = tabDatas(2)
+            radiation = tabDatas(3)
+            hygrometry = tabDatas(4)
+            temperature = tabDatas(5)
+            battery = Integer.Parse(tabDatas(6))
+            Dim stringSplitted As String()
+            For Each label As Label In allLabel
+                stringSplitted = label.Name.Split("_")
+                If (stringSplitted(0) = robot) Then
+                    If (Me.IsHandleCreated)
+                        Select Case stringSplitted(1)
+                            Case "temp"
+                                label.Invoke(Sub() label.Text = temperature + " °C")
+                                If temperature > 60
+                                    label.Invoke(Sub() label.ForeColor = Color.Red)
+                                elseif temperature < 10
+                                    label.Invoke(Sub() label.ForeColor = Color.Blue)
+                                Else 
+                                    label.Invoke(Sub() label.ForeColor = Color.Black)
                                         
-                                    End If
-                                Case "rad"
-                                    label.Invoke(Sub() label.Text = radiation + " MBq/g")
-                                Case "hyg"
-                                    label.Invoke(Sub() label.Text = hygrometry + " %")
-                                Case "bat"
-                                    label.Invoke(Sub() label.Text = Convert.ToString(battery) + " %")
-                            End Select
-                        End If
-
+                                End If
+                            Case "rad"
+                                label.Invoke(Sub() label.Text = radiation + " MBq/g")
+                            Case "hyg"
+                                label.Invoke(Sub() label.Text = hygrometry + " %")
+                            Case "bat"
+                                label.Invoke(Sub() label.Text = Convert.ToString(battery) + " %")
+                        End Select
                     End If
-                Next
-                if (threadStopped)
-                    Exit Sub
-                End If
-                Thread.Sleep(randomTime.Next(0, 5000))
-            Next
 
-        End If
+                End If
+            Next
+            if (threadStopped)
+                Exit Sub
+            End If
+            Thread.Sleep(randomTime.Next(0, 5000))
+        Next
+
+    End If
+End While
+        
     End Sub
 
     Private sub Average()
