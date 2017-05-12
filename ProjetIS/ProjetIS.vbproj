@@ -223,7 +223,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="ProjetIS_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="fichierLogRapport.txt" />
