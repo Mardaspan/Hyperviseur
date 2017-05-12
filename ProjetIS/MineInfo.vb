@@ -217,4 +217,84 @@ Public Class MineInfo
     Private Sub MineInfo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         threadStopped = True
     End Sub
+
+    Private Sub label_SH01_title_Click(sender As Object, e As EventArgs) Handles label_SH01_title.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH01_rad.Text
+        formVuRobot.Label5.Text = SH01_temp.Text
+        formVuRobot.Label6.Text = SH01_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub label_SH02_title_Click(sender As Object, e As EventArgs) Handles label_SH02_title.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH02_rad.Text
+        formVuRobot.Label5.Text = SH02_temp.Text
+        formVuRobot.Label6.Text = SH02_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub label_SH03_title_Click(sender As Object, e As EventArgs) Handles label_SH03_title.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH03_rad.Text
+        formVuRobot.Label5.Text = SH03_temp.Text
+        formVuRobot.Label6.Text = SH03_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub Label18_Click(sender As Object, e As EventArgs) Handles Label18.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = CL01_rad.Text
+        formVuRobot.Label5.Text = CL01_temp.Text
+        formVuRobot.Label6.Text = CL01_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub Label27_Click(sender As Object, e As EventArgs) Handles Label27.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH01_rad.Text
+        formVuRobot.Label5.Text = SH01_temp.Text
+        formVuRobot.Label6.Text = SH01_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub Label36_Click(sender As Object, e As EventArgs) Handles Label36.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH01_rad.Text
+        formVuRobot.Label5.Text = SH01_temp.Text
+        formVuRobot.Label6.Text = SH01_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub Label45_Click(sender As Object, e As EventArgs) Handles Label45.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH01_rad.Text
+        formVuRobot.Label5.Text = SH01_temp.Text
+        formVuRobot.Label6.Text = SH01_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub Label54_Click(sender As Object, e As EventArgs) Handles Label54.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH01_rad.Text
+        formVuRobot.Label5.Text = SH01_temp.Text
+        formVuRobot.Label6.Text = SH01_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub Label63_Click(sender As Object, e As EventArgs) Handles Label63.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH01_rad.Text
+        formVuRobot.Label5.Text = SH01_temp.Text
+        formVuRobot.Label6.Text = SH01_hyg.Text
+        formVuRobot.Show()
+    End Sub
+
+    Private Sub Label72_Click(sender As Object, e As EventArgs) Handles Label72.Click
+        Dim formVuRobot = new VuRobotForm
+        formVuRobot.Label4.Text = SH01_rad.Text
+        formVuRobot.Label5.Text = SH01_temp.Text
+        formVuRobot.Label6.Text = SH01_hyg.Text
+        formVuRobot.Show()
+    End Sub
 End Class
